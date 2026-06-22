@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mlr GH</title>
+    <link rel="shortcut icon" href="images/favicon.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- LOADING SCREEN -->
+    <div class="loading-screen" id="loading-screen">
+      <div>
+        <img id="loading-logo" src="images/mlr.svg" alt="logo" />
+        <img id="loading-animation" src="icons/loading.gif" alt="loading" />
+      </div>
+    </div>
+
+    <!-- MENU ICON -->
+    <div class="menu-icon-container">
+      <div class="menu-icon-wrapper">
+        <img id="menu-icon" src="icons/menu.svg" alt="Menu" />
+      </div>
+    </div>
+
+    <!--MENU BAR AND NAVIGATIONS-->
+    <div id="menu-bar-container" class="menu-bar-container">
+      <div class="menu-bar">
+        <div class="details">
+          <div class="logo">
+            <img src="images/mlr.png" alt="logo" />
+          </div>
+        </div>
+        <div class="nav">
+          <button id="search-stations" data-target="search-content">
+            Search
+          </button>
+          <button
+            id="all-stations"
+            class="active"
+            data-target="all-station-content"
+          >
+            All Stations
+          </button>
+          <button id="categories" data-target="categories-content">
+            Categories
+          </button>
+        </div>
+        <div class="details-about-us">
+          <button id="alert-btn">Alert</button>
+          <button id="about-us-btn">About</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN-->
+    <div class="main">
+      <!-- CONTENT DISPLAY AREA-->
+      <div class="content">
+        <!-- SEARCH -->
+        <section id="search-content" class="all-content">
+          <h2>Search</h2>
+          <div>
+            <div class="search-station">
+              <input
+                id="search-input"
+                placeholder="Enter FM Name or Frequency"
+                type="text"
+              />
+              <div id="clear-search-input">
+                <img src="icons/clear.svg" alt="clear" />
+              </div>
+            </div>
+          </div>
+          <div id="display-searched"></div>
+        </section>
+
+        <!-- ALL STATION -->
+        <section id="all-station-content" class="all-content active">
+          <h2>All Stations</h2>
+          <div id="list-of-all-stations"></div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section id="categories-content" class="all-content">
+          <h2>Filter By</h2>
+          <div class="categories-container">
+            <div class="common-category">
+              <button id="frequency">By Frequency</button>
+              <button id="name">By Name</button>
+            </div>
+            <div id="categories-btn"><p>-- Select Region--</p></div>
+            <div class="categories-options"></div>
+          </div>
+          <div class="filtered-station"></div>
+        </section>
+      </div>
+
+      <!--AUDIO PLAYER INTERFACE-->
+      <div class="player">
+        <div class="station-details">
+          <!-- AUDIO ANINAMTION -->
+          <div class="audio-animation">
+            <div>
+              <img
+                id="audio-waves"
+                src="icons/audio-waves.gif"
+                alt="animation"
+              />
+            </div>
+          </div>
+
+          <!-- STATION DETAILS -->
+          <div class="streaming-station-details">
+            <h2 id="station-name">Select</h2>
+            <h4 id="station-frequency">To</h4>
+            <p id="station-location">Start Streaming</p>
+          </div>
+        </div>
+
+        <!-- CONTROLS -->
+        <div id="audio-controls" class="audio-controls">
+          <div id="previous-audio">
+            <img src="icons/previous.svg" alt="previous" />
+          </div>
+          <div>
+            <div id="audio-play"><img src="icons/play.svg" alt="Play" /></div>
+            <div id="audio-stop"><img src="icons/stop.svg" alt="Stop" /></div>
+          </div>
+          <div id="next-audio"><img src="icons/next.svg" alt="next" /></div>
+        </div>
+      </div>
+    </div>
+
+    <!--POP UP MODALS-->
+
+    <!-- ALERT MODAL -->
+    <div id="alert-modal">
+      <div class="alert-modal-wrapper">
+        <div class="close-alert-modal-container">
+          <img id="close-alert-modal" src="icons/close.svg" alt="close" />
+        </div>
+        <div class="alert-header">
+          <h3 id="read-me">READ ME</h3>
+        </div>
+        <div class="alert-note">
+          <h4 id="disclaimer">DISCLAIMER</h4>
+          <p>
+            This website is a free, non-profit hobby project made by a radio
+            fan. I do not host, record or re-transmit any audio. I simply link
+            to public.
+          </p>
+          <p id="alert-note-hr">
+            All audio content, trademarks and station names are the intellectual
+            property of their respective broadcasters.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT US MODAL -->
+    <div id="about-us-modal">
+      <div class="about-us-modal-wrapper">
+        <div class="close-about-us-modal-container">
+          <img id="close-about-us-modal" src="icons/close.svg" alt="close" />
+        </div>
+        <div class="about-us-content">
+          <div class="web-app-details">
+            <h3 id="app-name">
+              My Local Radio Ghana <span id="app-initials">(mlr GH)</span>
+            </h3>
+            <div class="version-container"><p id="version">VERSION 1.0</p></div>
+            <p>A free online live radio stations streaming app</p>
+          </div>
+          <div class="developer-details">
+            <p>Developer:</p>
+            <a
+              target="_blank"
+              href="https://francisnyantakyidev.github.io/portfolio/"
+              >Francis Nyantakyi</a
+            >
+          </div>
+          <div class="contact">
+            <p>Contact:</p>
+            <a target="_blank" href="mailto:francis.nyantakyi.dev@gmail.com"
+              >Email</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/script.js"></script>
+  </body>
+</html>
