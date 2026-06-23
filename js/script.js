@@ -270,6 +270,7 @@ const categories = [
   "Volta",
   "Western",
   "Western North",
+  "Online",
 ];
 
 const categoriesBtn = document.getElementById("categories-btn");
