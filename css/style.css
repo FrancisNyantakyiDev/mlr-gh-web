@@ -169,6 +169,7 @@ body {
   height: 30px;
   width: 80px;
   background-color: rgb(216, 216, 216);
+  color: black;
 }
 
 #about-us-btn:hover {
