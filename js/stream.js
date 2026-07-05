@@ -188,4 +188,11 @@ export const allStations = [
     region: "Online",
     audio: "https://radio.steprotech.com:8130/radio.mp3",
   },
+  {
+    id: 24,
+    name: "Ahenfie FM",
+    frequency: "106.1",
+    region: "Kumasi",
+    audio: "https://radio.localstreamgh.com/listen/ahenfie_radio_/radio.mp3",
+  },
 ];
