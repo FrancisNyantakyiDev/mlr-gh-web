@@ -12,9 +12,15 @@ A free online radio streaming platform for listening to some Ghanaian radio stat
 
 ## Technology Used
 
+### Frontend
+
 - HTML5
 - CSS3
 - JavaScript (ES6 Modules)
+
+### Backend
+
+- Node.js
 
 ## Disclaimer
 
