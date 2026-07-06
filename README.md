@@ -16,22 +16,6 @@ A free online radio streaming platform for listening to some Ghanaian radio stat
 - CSS3
 - JavaScript (ES6 Modules)
 
-## Project Structure
-
-```
-MLR_GH/
-│
-├── css/
-├── fonts/
-├── icons/
-├── images/
-├── js/
-│
-├── index.html
-├── LICENSE.txt
-└── README.md
-```
-
 ## Disclaimer
 
 This website is a free, non-profit hobby project made by a radio fan. I do not host, record or re-transmit any audio. I simply link to public.
