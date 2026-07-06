@@ -729,8 +729,13 @@ body {
   }
 
   .menu-bar {
-    margin-left: 10px;
-    height: 90%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0;
+    width: 200px;
+    height: 100%;
   }
 
   .alert-modal-wrapper,
