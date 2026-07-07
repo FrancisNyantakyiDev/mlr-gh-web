@@ -53,6 +53,39 @@ NavBtns.forEach((button) => {
   });
 });
 
+// ALL MODALS
+// ALERT
+const AlertBtn = document.getElementById("alert-btn");
+const AlertModal = document.getElementById("alert-modal");
+const CloseAlertModal = document.getElementById("close-alert-modal");
+
+// Open Modal
+AlertBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  AlertModal.style.display = "flex";
+});
+
+CloseAlertModal.addEventListener("click", (e) => {
+  e.stopPropagation();
+  AlertModal.style.display = "none";
+});
+
+//ABOUT US
+const AboutUsBtn = document.getElementById("about-us-btn");
+const AboutUSModal = document.getElementById("about-us-modal");
+const CloseAboutUSModal = document.getElementById("close-about-us-modal");
+
+// Open Modal
+AboutUsBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  AboutUSModal.style.display = "flex";
+});
+
+CloseAboutUSModal.addEventListener("click", (e) => {
+  e.stopPropagation();
+  AboutUSModal.style.display = "none";
+});
+
 //MAIN
 
 //SEARCH A STATION
@@ -145,109 +178,152 @@ function loadAllStations() {
 
 loadAllStations();
 
-//LOAD THE AUDIO THE PLAYER
-function playStation(station) {
-  audioPlayer.src = station.audio;
-
-  document.getElementById("station-name").textContent = station.name;
-
-  document.getElementById("station-frequency").textContent = station.frequency;
-
-  document.getElementById("station-location").textContent = station.region;
-
-  audioPlayer.play();
-  document.getElementById("audio-play").style.display = "none";
-  document.getElementById("audio-stop").style.display = "flex";
-  document.querySelector(".audio-animation")?.classList.add("active");
-}
-
-//AUDIO PLAYER METHOD
-const audioPlayer = new Audio();
-
-//PLAYING STATIONS ARRAY
-let PlayingStations = [];
-
-let CurrentPlayingIndex = 0;
-
-//PLAYING STATIONS LIST FUNCTION
-function loadPlaylist(stations, stationId) {
-  PlayingStations = [...stations];
-
-  CurrentPlayingIndex = PlayingStations.findIndex(
-    (station) => station.id === stationId,
-  );
-
-  playStation(PlayingStations[CurrentPlayingIndex]);
-}
+//AUDIO PLAYER
 
 //AUDIO CONTROLS
 const PlayBtn = document.getElementById("audio-play");
 const StopBtn = document.getElementById("audio-stop");
+const NextBtn = document.getElementById("next-audio");
+const PreviousBtn = document.getElementById("previous-audio");
+const audioAnimation = document.querySelector(".audio-animation");
+
+const player = {
+  audio: document.getElementById("radio-player"),
+  playlist: [],
+  currentStation: null,
+  currentIndex: -1,
+  isPlaying: false,
+};
+
+//CONFIGURE AUDIO PLAYER
+player.audio.preload = "auto";
+
+let reconnectToLive = false;
+
+player.playlist = allStations;
+
+//LOAD PLAYLIST
+function loadPlaylist(stations, stationId) {
+  player.playlist = [...stations];
+
+  player.currentIndex = player.playlist.findIndex(
+    (station) => station.id === stationId,
+  );
+
+  if (player.currentIndex === -1) return;
+
+  player.currentStation = player.playlist[player.currentIndex];
+
+  playCurrentStation();
+}
+
+//UPDATE PLAYER DETAILS
+function updatePlayerUI() {
+  if (!player.currentStation) return;
+
+  document.getElementById("station-name").textContent =
+    player.currentStation.name;
+
+  document.getElementById("station-frequency").textContent =
+    player.currentStation.frequency;
+
+  document.getElementById("station-location").textContent =
+    player.currentStation.region;
+}
+
+//PLAY CURRENT STATION
+function playCurrentStation() {
+  if (!player.currentStation) return;
+
+  player.audio.pause();
+
+  player.audio.src = player.currentStation.audio;
+
+  player.audio.load();
+
+  updatePlayerUI();
+
+  player.audio
+    .play()
+    .then(() => {
+      player.isPlaying = true;
+
+      PlayBtn.style.display = "none";
+      StopBtn.style.display = "flex";
+
+      audioAnimation.classList.add("active");
+    })
+    .catch(console.error);
+}
 
 //PLAY BUTTON
 PlayBtn.addEventListener("click", () => {
-  if (PlayingStations.length === 0) {
-    window.alert("Please select a station to start streaming");
+  if (!player.currentStation) {
+    alert("Please select a station.");
     return;
   }
 
-  audioPlayer.load();
-  audioPlayer.play();
+  if (reconnectToLive) {
+    player.audio.src = player.currentStation.audio;
+    player.audio.load();
+    reconnectToLive = false;
+  }
 
-  PlayBtn.style.display = "none";
-  StopBtn.style.display = "flex";
-  document.querySelector(".audio-animation")?.classList.add("active");
+  player.audio
+    .play()
+    .then(() => {
+      player.isPlaying = true;
+
+      PlayBtn.style.display = "none";
+      StopBtn.style.display = "flex";
+
+      audioAnimation.classList.add("active");
+    })
+    .catch(console.error);
 });
 
 //STOP BUTTON
 StopBtn.addEventListener("click", () => {
-  audioPlayer.pause();
+  player.audio.pause();
 
-  const crtPlayingSrc = audioPlayer.src;
+  reconnectToLive = true;
 
-  function playStation(station) {
-    audioPlayer.src = "";
-    audioPlayer.src = crtPlayingSrc;
+  player.isPlaying = false;
 
-    document.getElementById("station-name").textContent = station.name;
-
-    document.getElementById("station-frequency").textContent =
-      station.frequency;
-
-    document.getElementById("station-location").textContent = station.region;
-  }
-
-  StopBtn.style.display = "none";
   PlayBtn.style.display = "flex";
-  document.querySelector(".audio-animation")?.classList.remove("active");
+  StopBtn.style.display = "none";
+
+  audioAnimation.classList.remove("active");
 });
 
 //NEXT BUTTON
-const NextBtn = document.getElementById("next-audio");
 NextBtn.addEventListener("click", () => {
-  if (PlayingStations.length === 0) return;
+  if (player.playlist.length === 0) return;
 
-  CurrentPlayingIndex++;
+  player.currentIndex++;
 
-  if (CurrentPlayingIndex >= PlayingStations.length) {
-    CurrentPlayingIndex = 0;
+  if (player.currentIndex >= player.playlist.length) {
+    player.currentIndex = 0;
   }
 
-  playStation(PlayingStations[CurrentPlayingIndex]);
+  player.currentStation = player.playlist[player.currentIndex];
+
+  playCurrentStation();
 });
 
-//PRECIOUS BUTTON
-const PreviousBtn = document.getElementById("previous-audio");
+//PREVIOUS BUTTON
 PreviousBtn.addEventListener("click", () => {
-  if (PlayingStations.length === 0) return;
+  if (player.playlist.length === 0) return;
 
-  CurrentPlayingIndex--;
+  player.currentIndex--;
 
-  if (CurrentPlayingIndex < 0) {
-    CurrentPlayingIndex = PlayingStations.length - 1;
+  if (player.currentIndex < 0) {
+    player.currentIndex = player.playlist.length - 1;
   }
 
-  playStation(PlayingStations[CurrentPlayingIndex]);
+  player.currentStation = player.playlist[player.currentIndex];
+
+  playCurrentStation();
 });
 
 //CATEGORIES
@@ -432,37 +508,4 @@ window.addEventListener("click", (event) => {
   ) {
     categoriesOptions.classList.remove("active");
   }
-});
-
-// ALL MODALS
-// ALERT
-const AlertBtn = document.getElementById("alert-btn");
-const AlertModal = document.getElementById("alert-modal");
-const CloseAlertModal = document.getElementById("close-alert-modal");
-
-// Open Modal
-AlertBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  AlertModal.style.display = "flex";
-});
-
-CloseAlertModal.addEventListener("click", (e) => {
-  e.stopPropagation();
-  AlertModal.style.display = "none";
-});
-
-//ABOUT US
-const AboutUsBtn = document.getElementById("about-us-btn");
-const AboutUSModal = document.getElementById("about-us-modal");
-const CloseAboutUSModal = document.getElementById("close-about-us-modal");
-
-// Open Modal
-AboutUsBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
-  AboutUSModal.style.display = "flex";
-});
-
-CloseAboutUSModal.addEventListener("click", (e) => {
-  e.stopPropagation();
-  AboutUSModal.style.display = "none";
 });

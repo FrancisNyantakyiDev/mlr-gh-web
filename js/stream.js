@@ -134,47 +134,6 @@ export const allStations = [
 
   {
     id: 17,
-    name: "Pure FM",
-    frequency: "95.7",
-    region: "Kumasi",
-    audio: "http://purefm.atunwadigital.streamguys1.com/purefm",
-  },
-
-  {
-    id: 18,
-    name: "Sankofa Radio",
-    frequency: "98.9",
-    region: "Western",
-    audio: "http://purefm.atunwadigital.streamguys1.com/purefm",
-  },
-
-  {
-    id: 19,
-    name: "Sompa FM",
-    frequency: "93.1",
-    region: "Kumasi",
-    audio:
-      "https://stream-287.surfernetwork.com/erjhljewkybuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJlcmpobGpld2t5YnV2IiwiaG9zdCI6InN0cmVhbS0yODcuc3VyZmVybmV0d29yay5jb20iLCJydHRsIjo1LCJqdGkiOiJ2WXFCemxxRlRaLU41RF9HME95dkl3IiwiaWF0IjoxNzgyMjM0MjEzLCJleHAiOjE3ODIyMzQyNzN9.IsRVuEHDGjhzFcmakK2aAu5c9Gqykg3GZwhceoS253U",
-  },
-
-  {
-    id: 20,
-    name: "Sompa FM",
-    frequency: "106.5",
-    region: "Accra",
-    audio: "http://purefm.atunwadigital.streamguys1.com/purefm",
-  },
-  {
-    id: 21,
-    name: "Sompa FM",
-    frequency: "101.1",
-    region: "Western",
-    audio:
-      "https://stream-280.surfernetwork.com/ey5mddtbdfeuv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiJleTVtZGR0YmRmZXV2IiwiaG9zdCI6InN0cmVhbS0yODAuc3VyZmVybmV0d29yay5jb20iLCJydHRsIjo1LCJqdGkiOiJoZTVxbE1RU1QwdV9NWk1rZldaTjJ3IiwiaWF0IjoxNzgyMjM0MzIwLCJleHAiOjE3ODIyMzQzODB9.LEg4tf5aD8N9tmZMbMOwmMdKgx_Rc42RI6b8KfQhBS0",
-  },
-
-  {
-    id: 22,
     name: "YFm",
     frequency: "97.9",
     region: "Western",
@@ -182,14 +141,7 @@ export const allStations = [
   },
 
   {
-    id: 23,
-    name: "Zaa Radio",
-    frequency: "",
-    region: "Online",
-    audio: "https://radio.steprotech.com:8130/radio.mp3",
-  },
-  {
-    id: 24,
+    id: 18,
     name: "Ahenfie FM",
     frequency: "106.1",
     region: "Kumasi",
