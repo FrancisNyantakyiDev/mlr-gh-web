@@ -22,11 +22,11 @@ This website is a free, non-profit hobby project made by a radio fan. I do not h
 
 All audio content, trademarks and station names are the intellectual property of their respective broadcasters.
 
-## Developer
+## Author
 
 - **Francis Nyantakyi**
-- Email: francis.nyantakyi.dev@gmail.com
 - GitHub: https://github.com/FrancisNyantakyiDev
+- Email: francis.nyantakyi.dev@gmail.com
 
 ## License
 
